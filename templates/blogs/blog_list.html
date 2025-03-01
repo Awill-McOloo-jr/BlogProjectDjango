@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>All Blogs</h2>
+{% for blog in blogs %}
+<div>
+    <h3>{{ blog.title }}</h3>
+    <p>{{ blog.content }}</p>
+    <p>By {{ blog.author.username }} on {{ blog.created_at }}</p>
+    {% if user == blog.author %}
+    <a href="{% url 'blog_edit' blog.id %}">Edit</a> |
+    <a href="{% url 'blog_delete' blog.id %}">Delete</a>
+    {% endif %}
+    <hr>
+</div>
+{% empty %}
+<p>No blogs yet.</p>
+{% endfor %}
+{% endblock %}

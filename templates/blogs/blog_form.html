@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>{% if blog %}Edit Blog{% else %}New Blog{% endif %}</h2>
+<form method="post">
+    {% csrf_token %}
+    <label>Title: <input type="text" name="title" value="{{ blog.title|default:'' }}"></label><br>
+    <label>Content: <textarea name="content">{{ blog.content|default:'' }}</textarea></label><br>
+    <button type="submit">Save</button>
+</form>
+{% endblock %}
